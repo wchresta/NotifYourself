@@ -6,8 +6,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -55,6 +57,8 @@ public class MainNavigationActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        MobileAds.initialize(this, getString(R.string.secretsAdmobAppId));
+
         /*
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +77,7 @@ public class MainNavigationActivity extends AppCompatActivity {
             public void onSuccess(InstanceIdResult instanceIdResult) {
                 secretToken = instanceIdResult.getToken();
                 secretTokenGetter = null;
+                Log.i("Secret Token", secretToken);
             }
         });
 

@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.InstanceIdResult;
@@ -27,6 +29,7 @@ public class SettingsFragment extends Fragment {
     private String secretToken;
 
     private TextView tokenText;
+    private TextView tokenUrlText;
     private ImageButton tokenCopyButton;
 
     private View.OnClickListener tokenCopyButtonListener = new View.OnClickListener() {
@@ -67,12 +70,14 @@ public class SettingsFragment extends Fragment {
     private void showToken() {
         if (secretToken != null) {
             tokenText.setText(secretToken);
+            tokenUrlText.setText(getString(R.string.secretsCloudFunctionUrl) + "?token=" + secretToken);
         }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -81,9 +86,18 @@ public class SettingsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         tokenText = view.findViewById(R.id.tokenText);
+        tokenUrlText = view.findViewById(R.id.tokenUrlText);
 
         tokenCopyButton = view.findViewById(R.id.tokenCopyButton);
         tokenCopyButton.setOnClickListener(tokenCopyButtonListener);
+
+
+        AdView adView = view.findViewById(R.id.adView);
+
+        // Create an ad request.
+        AdRequest.Builder adRequestBuilder = new AdRequest.Builder();
+        // Start loading the ad.
+        adView.loadAd(adRequestBuilder.build());
 
         showToken();
         return view;

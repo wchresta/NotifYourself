@@ -7,24 +7,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
     private final List<Message> messageList;
+    private final DateFormat dateFormat;
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title, text;
+        TextView title, text, timestamp;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.title);
             text = itemView.findViewById(R.id.text);
+            timestamp = itemView.findViewById(R.id.timestamp);
         }
     }
 
     MessageAdapter(List<Message> messageList) {
         this.messageList = messageList;
+        this.dateFormat = DateFormat.getDateTimeInstance();
     }
 
     @NonNull
@@ -45,6 +49,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             viewHolder.title.setText("-");
         }
         viewHolder.text.setText(message.getText());
+        viewHolder.timestamp.setText(dateFormat.format(message.getDate()));
     }
 
     @Override
