@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">NotifYourself</string>
+
     <string name="action_settings">Settings</string>
     <string name="token">Security Token</string>
     <string name="waiting_for_token">Waiting for Token…</string>
@@ -8,7 +9,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder body -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="copy_security_token">Copy Security Token to clipboard</string>
     <string name="tokenUrl">Message URL</string>

@@ -7,21 +7,18 @@ import java.util.Date;
 
 public class Message implements Serializable {
     private String title;
-    private String text;
-    private String label;
+    private String body;
     private long timestamp;
 
-    Message(@Nullable String title, String text, @Nullable String label, long timestamp) {
+    Message(@Nullable String title, String body, long timestamp) {
         this.title = title;
-        this.text = text;
-        this.label = label;
+        this.body = body;
         this.timestamp = timestamp;
     }
 
-    Message(@Nullable String title, String text, @Nullable String label) {
+    Message(@Nullable String title, String body) {
         this.title = title;
-        this.text = text;
-        this.label = label;
+        this.body = body;
         this.timestamp = System.currentTimeMillis();
     }
 
@@ -34,21 +31,12 @@ public class Message implements Serializable {
         this.title = title;
     }
 
-    String getText() {
-        return text;
+    String getBody() {
+        return body;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    @Nullable
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(@Nullable String label) {
-        this.label = label;
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public long getTimestamp() {

@@ -26,9 +26,9 @@ import com.google.firebase.iid.InstanceIdResult;
  * create an instance of this fragment.
  */
 public class SettingsFragment extends Fragment {
-    private String secretToken;
+    private String secretToken = null;
 
-    private TextView tokenText;
+    private TextView tokenText = null;
     private TextView tokenUrlText;
     private ImageButton tokenCopyButton;
 
@@ -55,9 +55,9 @@ public class SettingsFragment extends Fragment {
         return fragment;
     }
 
-    public static SettingsFragment newInstance(Task<InstanceIdResult> secretTokenGeter) {
+    public static SettingsFragment newInstance(Task<InstanceIdResult> secretTokenGetter) {
         final SettingsFragment fragment = new SettingsFragment();
-        secretTokenGeter.addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+        secretTokenGetter.addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
             @Override
             public void onSuccess(InstanceIdResult instanceIdResult) {
                 fragment.secretToken = instanceIdResult.getToken();
@@ -68,7 +68,7 @@ public class SettingsFragment extends Fragment {
     }
 
     private void showToken() {
-        if (secretToken != null) {
+        if (secretToken != null && tokenText != null && tokenUrlText != null) {
             tokenText.setText(secretToken);
             tokenUrlText.setText(getString(R.string.secretsCloudFunctionUrl) + "?token=" + secretToken);
         }

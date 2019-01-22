@@ -3,6 +3,7 @@
     package="ch.chrestawilli.notifyourself">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.no" />
 
     <application
         android:allowBackup="true"
@@ -26,8 +27,7 @@ meta-data
         -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/secretsAdmobAppId"
-            />
+            android:value="@string/secretsAdmobAppId" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
@@ -38,14 +38,19 @@ meta-data
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="ch.chrestawilli.notifyourself.ACTION_SHOW_MESSAGES" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <service android:name=".MessagingService">
+        <service
+            android:name=".MessageService"
+            android:enabled="true">
+
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="ch.chrestawilli.notifyourself.FULL_LOAD_REQUEST" />
             </intent-filter>
         </service>
     </application>

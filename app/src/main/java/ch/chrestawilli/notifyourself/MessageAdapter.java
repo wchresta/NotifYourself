@@ -15,13 +15,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     private final DateFormat dateFormat;
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title, text, timestamp;
+        TextView title, body, timestamp;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             title = itemView.findViewById(R.id.title);
-            text = itemView.findViewById(R.id.text);
+            body = itemView.findViewById(R.id.body);
             timestamp = itemView.findViewById(R.id.timestamp);
         }
     }
@@ -48,7 +48,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         } else {
             viewHolder.title.setText("-");
         }
-        viewHolder.text.setText(message.getText());
+        viewHolder.body.setText(message.getBody());
         viewHolder.timestamp.setText(dateFormat.format(message.getDate()));
     }
 
